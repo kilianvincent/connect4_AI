@@ -27,13 +27,18 @@ class TestConnect4(unittest.TestCase):
 
     def test_is_finished(self):
         self.assertEqual(self._connect4.is_finished(), False)
-        for i in range(4):
-            self._connect4._grid[0][i] = 1
+        self._connect4._grid = [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1],
+                                [0, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 1]]
+        self.assertEqual(self._connect4.is_finished(), True)
+        self._connect4._grid = [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0],
+                                [0, 0, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+        self.assertEqual(self._connect4.is_finished(), True)
+        self._connect4._grid = [[1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0], [0, 0, 0, 1, 0, 0],
+                                [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
+        self.assertEqual(self._connect4.is_finished(), True)
+        self._connect4._grid = [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0], [0, 0, 1, 0, 0, 0],
+                                [0, 1, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
         self.assertEqual(self._connect4.is_finished(), True)
         self._connect4._grid = [[1, 1, 2, 2, 1, 1], [2, 2, 1, 1, 2, 2], [1, 1, 2, 2, 1, 1], [2, 2, 1, 1, 2, 2],
                                 [1, 1, 2, 2, 1, 1], [2, 2, 1, 1, 2, 2], [1, 1, 2, 2, 1, 1]]
         self.assertEqual(self._connect4.is_finished(), True)
-
-
-if __name__ == '__main__':
-    unittest.main()
